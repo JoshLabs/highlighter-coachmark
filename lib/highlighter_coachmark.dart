@@ -371,12 +371,14 @@ class _CoachMarkPainter extends CustomPainter {
     @required this.shadow,
     this.clipperList,
     this.coachMarkShape = BoxShape.circle,
+    this.rectangleBorderRadius = 0.3,
   });
 
   final List<Rect> rectList;
   final BoxShadow shadow;
   final List<_CoachMarkClipper> clipperList;
   final BoxShape coachMarkShape;
+  final rectangleBorderRadius;
 
   void paint(Canvas canvas, Size size) {
     if (rectList.isNotEmpty && clipperList.isNotEmpty) {
@@ -390,8 +392,8 @@ class _CoachMarkPainter extends CustomPainter {
         switch (coachMarkShape) {
           case BoxShape.rectangle:
             canvas.drawRRect(
-                RRect.fromRectAndRadius(
-                    rectList[i], Radius.circular(circle.width * 0.3)),
+                RRect.fromRectAndRadius(rectList[i],
+                    Radius.circular(circle.width * rectangleBorderRadius)),
                 paint);
             break;
           case BoxShape.circle:
